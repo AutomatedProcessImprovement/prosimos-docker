@@ -2,7 +2,7 @@ version: '3'
 
 services:
     api:
-      image: irynahalenok/prosimos-api:0.1
+      image: ${API_IMAGE}
       container_name: prosimos-api
       expose:
         - "5000"
@@ -10,7 +10,7 @@ services:
         - "5000:5000"
 
     client:
-      image: irynahalenok/prosimos-client:0.1
+      image: ${CLIENT_IMAGE}
       container_name: prosimos-client
       expose:
         - "80"
