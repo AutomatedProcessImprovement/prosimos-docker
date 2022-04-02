@@ -53,9 +53,6 @@ echo "### Starting client ..."
 chmod +x init-letsencrypt.sh
 sudo ./init-letsencrypt.sh
 
-echo "### Starting api ..."
-sudo docker-compose up -d api
-
 # start certbot (for checking the update of the certificates every 12 hours)
 echo "### Starting certbot ..."
 sudo docker-compose up -d certbot

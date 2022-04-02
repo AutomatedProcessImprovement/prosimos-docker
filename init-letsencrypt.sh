@@ -59,6 +59,9 @@ docker-compose run --rm --entrypoint "\
     -subj '/CN=localhost'" certbot
 echo
 
+# starting api because nginx.conf depends on it
+echo "### Starting api ..."
+sudo docker-compose up -d api
 
 echo "### Starting client ..."
 docker-compose up --force-recreate -d client
