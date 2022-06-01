@@ -20,7 +20,7 @@ Otherwise, if you want to roll out a new release manually, proceed with the next
         sudo docker-compose up -d --no-deps <container_name>
         ```
 
-        where `<container_name>` should be changed, for example, to `api` / `container`.
+        where `<container_name>` should be changed, for example, to `api` / `client`.
     - If you want to restart all containers inside the `docker-compose.yml`:
         ```
         sudo docker-compose up -d
