@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    api:
+      image: irynahalenok/prosimos-api:latest
+      container_name: prosimos-api-local
+      restart: unless-stopped
+      ports:
+        - "5000:5000"
+
+    client:
+      image: irynahalenok/prosimos-client-local:latest
+      container_name: prosimos-client-local
+      restart: unless-stopped
+      ports:
+        - "80:80"
