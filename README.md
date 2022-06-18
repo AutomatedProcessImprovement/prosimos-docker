@@ -3,8 +3,8 @@
 The open-source full-stack application that allows running business process simulation with the support of differentiated resources. Additionally, it includes the discovery of the simulation parameters based on logs file (either in .xes or .csv format).
 
 From an architectural perspective, web application consists of two parts:
-1) Prosimos Client implemented in React and source code is available [here](https://github.com/AutomatedProcessImprovement/prosimos-frontend).
-2) Prosimos Web Server implemented using Flask and source code is available [here](https://github.com/AutomatedProcessImprovement/prosimos-microservice).
+1) Prosimos Web Portal implemented in React and source code is available [here](https://github.com/AutomatedProcessImprovement/prosimos-frontend).
+2) Prosimos API implemented using Flask and source code is available [here](https://github.com/AutomatedProcessImprovement/prosimos-microservice).
 
 This repository serves as an entry point to the web application. In order to run the whole web application, we are using the dockerized version of the services underneath. This is done to reduce the complexity of delivering and running the application on different machines. The repository includes two docker-compose files: for local and production usage. 
 
