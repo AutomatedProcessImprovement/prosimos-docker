@@ -6,7 +6,12 @@ services:
       container_name: prosimos-api
       restart: unless-stopped
       ports:
-        - "5000:5000"
+        - 5000:5000
+      volumes:
+          - ./data/celery:/app/src/celery/data
+      environment:
+          - CELERY_BROKER_URL=amqp://rabbit:5672/
+          - CELERY_RESULT_BACKEND=redis://redis:6379/
 
     client:
       image: ${CLIENT_IMAGE}
@@ -18,6 +23,8 @@ services:
       volumes:
         - ./certbot/conf:/etc/letsencrypt:ro
         - ./certbot/www:/var/www/certbot:ro
+      depends_on:
+        - api
       command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     
     certbot:
@@ -28,3 +35,31 @@ services:
         - ./certbot/conf:/etc/letsencrypt:rw
         - ./certbot/www:/var/www/certbot:rw
       entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    
+    # broker for celery
+    rabbit:
+      hostname: rabbit
+      image: rabbitmq:3-management
+      container_name: prosimos-rabbitmq
+      ports:
+          - 5672:5672 # port for the worker for tasks management
+          - 15672:15672 # GUI port
+
+    # result backend for celery
+    redis:
+      image: redis:6-alpine
+      ports:
+          - 6379:6379
+
+    # worker deployment
+    worker:
+        image: ${CELERY_IMAGE}
+        environment:
+            - CELERY_BROKER_URL=amqp://rabbit:5672/
+            - CELERY_RESULT_BACKEND=redis://redis:6379/
+        volumes:
+            - ./data/celery:/app/src/celery/data
+        depends_on: 
+        - rabbit
+        - redis
+    

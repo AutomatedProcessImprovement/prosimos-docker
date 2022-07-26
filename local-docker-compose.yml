@@ -2,15 +2,51 @@ version: '3'
 
 services:
     api:
-      image: irynahalenok/prosimos-api:latest
+      image: ${API_IMAGE}
       container_name: prosimos-api-local
       restart: unless-stopped
       ports:
-        - "5000:5000"
+        - 5000:5000
+      volumes:
+          - ./data/celery:/app/src/celery/data
+      environment:
+          - CELERY_BROKER_URL=amqp://rabbit:5672/
+          - CELERY_RESULT_BACKEND=redis://redis:6379/
+          - FLASK_DEBUG=1
 
     client:
-      image: irynahalenok/prosimos-client-local:latest
+      image: ${CLIENT__LOCAL_IMAGE}
       container_name: prosimos-client-local
       restart: unless-stopped
       ports:
         - "80:80"
+      depends_on:
+        - api
+
+    # broker for celery
+    rabbit:
+      hostname: rabbit
+      image: rabbitmq:3-management
+      container_name: prosimos-rabbitmq
+      ports:
+          - 5672:5672 # port for the worker for tasks management
+          - 15672:15672 # GUI port
+
+    # result backend for celery
+    redis:
+      image: redis:6-alpine
+      ports:
+          - 6379:6379
+
+    # worker deployment
+    worker:
+        image: ${CELERY_IMAGE}
+        environment:
+            - CELERY_BROKER_URL=amqp://rabbit:5672/
+            - CELERY_RESULT_BACKEND=redis://redis:6379/
+            - FLASK_DEBUG=1
+        volumes:
+            - ./data/celery:/app/src/celery/data
+        depends_on: 
+        - rabbit
+        - redis
