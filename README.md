@@ -17,6 +17,10 @@ The deployed web application is available here: https://prosimos.cloud.ut.ee/.
 
 The example used during the demo could be found in `demo_example` folder. It includes both the model and the log file (in .xes format). In order to download those files, you need to clone the whole repository.
 
+## User Manual
+
+In case you need to get some insights about different parts of the app, you can read our [User Manual](user_manual.md).
+
 ## Running the application locally
 
 > Please, note that you need to have `Docker` installed in order to follow the following steps. The installation instructions could be found here: https://docs.docker.com/get-docker/
