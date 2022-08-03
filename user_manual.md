@@ -37,7 +37,31 @@ Detailed description of every section of the simulation parameters:
 
 1. *Case Creation* describes when (arrival time calendar) and how (arrival time distribution) new process cases can be started. 
 
-    Inter arrival time is defined by the probability distribution function. Right now, available functions include: fix, norm, expon, exponnorm, gamma, triang, uniform, lognorm. Once you select one of them, the number of filled-in parameters will change. We are using statistical functions from the SciPy's subpackage `scipy.stats`. In case user needs to get the meaning of the parameters, one should consult [official documentation](https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats).
+    Inter arrival time is defined by the probability distribution function. Right now, available functions include: fix, norm, expon, exponnorm, gamma, triang, uniform, lognorm. Once you select one of them, the number of filled-in parameters will change. We are using statistical functions from the SciPy's subpackage `scipy.stats`. In case user needs to get the meaning of the parameters, one should consult [official documentation](https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats). Examples based on multiple functions:
+
+    - *norm*
+        - Loc: the mean
+        - Scale: the standard deviation
+        - Min: the lower bound
+        - Max: the upper bound
+
+    - *gamma* 
+        - Param 1: shape parameter (`a`)
+            - if `a = 1`, it becomes exponential distribution
+        - Loc: location parameter, shift by the x-axis
+        - Scale: scale parameter (`θ`).
+        - Min: the lower bound
+        - Max: the upper bound
+    
+    - *triang*
+        - Param 1: shape parameter (`c`)
+            - `0 ≤ c ≥ 1`
+        - Loc: shifts the start to `loc`
+        - Scale: changes the width from 1 to `scale`
+        - Min: the lower bound
+        - Max: the upper bound
+
+    > `Min` and `Max` boundaries are not part of `scipy.stats` functions and were introduced additionally. They allow users to discard all values generated outside of the defined range.
 
 2. *Resource Calendars* lists the time intervals in which a resource is available to perform a task on a weekly calendar basis.
 
