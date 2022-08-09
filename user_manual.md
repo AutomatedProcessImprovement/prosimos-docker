@@ -2,7 +2,15 @@
 
 The Prosimos' landing page (https://prosimos.cloud.ut.ee/) consists of two main parts:
 
-1) Defining the **Process Model**. Here, user needs to download the BPMN model that will be used for the discovery / simulation. Allowed file formats: .bpmn. 
+1) Defining the **Process Model**. Here, user needs to download the BPMN model that will be used for the discovery / simulation. Allowed file formats: .bpmn. Currently supported BPMN elements:
+- Task
+- Events:
+    - Start
+    - End
+- Gateways:
+    - Exclusive
+    - Inclusive
+    - Parallel
 
 2) Defining the **Simulation Scenario**. This part defines the parameters that needs to be completely entered in order to simulate the model. The tool provides three options on how those simulation scenario parameters can be filled in:
 
