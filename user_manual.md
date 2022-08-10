@@ -11,6 +11,7 @@ The Prosimos' landing page (https://prosimos.cloud.ut.ee/) consists of two main 
     - Exclusive
     - Inclusive
     - Parallel
+    The tool expects that the provided model follows good modeling practices and is based on sound models. For example, there are no deadlocks in the model or no multiple incoming flows for an activity (to depict the XOR gateway). Instead, an exclusive gateway should be used explicitly.
 
 2) Defining the **Simulation Scenario**. This part defines the parameters that needs to be completely entered in order to simulate the model. The tool provides three options on how those simulation scenario parameters can be filled in:
 
