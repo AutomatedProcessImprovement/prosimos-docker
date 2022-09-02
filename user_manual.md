@@ -12,13 +12,15 @@ The Prosimos' landing page (https://prosimos.cloud.ut.ee/) consists of two main 
     - Inclusive
     - Parallel
     
-    > The tool expects that the provided model follows good modeling practices and is based on sound models. For example, there are no deadlocks in the model or no multiple incoming flows for an activity (to depict the XOR gateway). Instead, an exclusive gateway should be used explicitly.
 
 2) Defining the **Simulation Scenario**. This part defines the parameters that needs to be completely entered in order to simulate the model. The tool provides three options on how those simulation scenario parameters can be filled in:
 
     - *Create a simulation scenario manually.* User will be redirected to the page with the empty template for the simulation scenario. After that, the user needs to enter all required information in order to proceed with the simulation.
     - *Upload a simulation scenario.* In case the user has already used the tool, there is an option to save the filled-in template and re-use it in the future. This option is designed exactly for this use case: when the user already has pre saved template of the simulation scenario in .json format. 
-    - *Discover a simulation scenario from the log.* Here, the user can provide the log file (e.g., in .xes format) and the tool discovers the simulation parameters for the user. 
+    - *Discover a simulation scenario from the log.* Here, the user can provide the log file (e.g., in .xes format) and the tool discovers the simulation parameters for the user.
+        - The discovery from logs considers the events in the log containing the following attributes: activity name,  resource, start timestamp, and end timestamp. Thus, Prosimos discards the events in which at least one of those attributes is missing. Similarly, Prosimos discards the events whose activity name does not match any task in the BPMN model received as input. Prosimos considers invalid (and rejects) event logs in which the number of events discarded exceeds 50% of all the events in the log. 
+        - If the input log is in CSV format, it must contain five columns with the header containing the substrings `case`, `activity`, `start`, `end`, and `resource` (in any order).
+        - If the input log is in XES format, the events to be accepted must contain the information of the following attributes: `concept:name`, `org:resource`, `lifecycle:transition` and `time:timestamp`.
 
 After selecting the process model and way of filling in the simulation scenario parameters, the user is redirected to the page where they can view and modify different sections of scenario parameters. 
 
