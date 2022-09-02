@@ -21,6 +21,7 @@ The Prosimos' landing page (https://prosimos.cloud.ut.ee/) consists of two main 
         - The discovery from logs considers the events in the log containing the following attributes: activity name,  resource, start timestamp, and end timestamp. Thus, Prosimos discards the events in which at least one of those attributes is missing. Similarly, Prosimos discards the events whose activity name does not match any task in the BPMN model received as input. Prosimos considers invalid (and rejects) event logs in which the number of events discarded exceeds 50% of all the events in the log. 
         - If the input log is in CSV format, it must contain five columns with the header containing the substrings `case`, `activity`, `start`, `end`, and `resource` (in any order).
         - If the input log is in XES format, the events to be accepted must contain the information of the following attributes: `concept:name`, `org:resource`, `lifecycle:transition` and `time:timestamp`.
+        - The size limitation of the log file is 25 MB. If your file exceeds the size, please consider compressing the file to archive (`zip` extension) and then upload it to the system.
 
 After selecting the process model and way of filling in the simulation scenario parameters, the user is redirected to the page where they can view and modify different sections of scenario parameters. 
 
@@ -82,11 +83,11 @@ Detailed description of every section of the simulation parameters:
     Each calendar includes name and at least one time period. The user cannot save one instance of the calendar with no time periods in it. 
 
     The user is allowed to:
-    1. create calendars: *Add new calendar* button
-    2. modify calendars. Editing the time periods itself (begin and end time, begin and end time) and the number of assigned time periods by *+* and *delete* button in the last column.
-    3. delete calendars. Select one or multiple calendars by using the checkbox in the first column, after that click *Delete* button in the right upper corner. 
+    1. create calendars: *Add new* button. Once user clicks the button, the dialog will pop up asking user to provide the name for the new calendar. The user either type the calendar name and click *Submit* or click *Cancel* button and no new calendar will be created. 
+    2. modify calendars. Editing the time periods itself (begin and end time, begin and end time) and the number of assigned time periods by *+ Add a time period* and *delete* button in the last column.
+    3. delete calendars. Select one of the calendar from the dropdown, after that click *Delete selected* button in the right upper corner.
 
-    ![Resource Calendars multiple delete](docs/images/resource_calendars_multiple_delete.png)
+    ![Resource Calendars description](docs/images/resource_calendars_description.png)
 
 
 3. *Resources* describes the resources grouped into pools. Specifically, it includes a set of resource pools.
