@@ -89,6 +89,7 @@ Detailed description of every section of the simulation parameters:
 
     ![Resource Calendars description](docs/images/resource_calendars_description.png)
 
+    > Switching between different calendars might take some time in case of numerous time periods assigned to the calendar. For example, the calendar with 30 time periods might take 30-60 sec to render. 
 
 3. *Resources* describes the resources grouped into pools. Specifically, it includes a set of resource pools.
 
