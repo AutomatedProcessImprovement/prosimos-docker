@@ -48,7 +48,7 @@ The main parts of the Simulation Scenario page are:
 
 Detailed description of every section of the simulation parameters:
 
-1. *Case Creation* describes when (arrival time calendar) and how (arrival time distribution) new process cases can be started. 
+1. [*Case Creation*](#case-creation) <a name="case-creation"></a> describes when (arrival time calendar) and how (arrival time distribution) new process cases can be started. 
 
     Inter arrival time is defined by the probability distribution function. Right now, available functions include: fix, norm, expon, exponnorm, gamma, triang, uniform, lognorm. Once you select one of them, the number of filled-in parameters will change. We are using statistical functions from the SciPy's subpackage `scipy.stats`. In case user needs to get the meaning of the parameters, one should consult [official documentation](https://docs.scipy.org/doc/scipy/reference/stats.html#module-scipy.stats). Examples based on multiple functions:
 
@@ -76,7 +76,7 @@ Detailed description of every section of the simulation parameters:
 
     > `Min` and `Max` boundaries are not part of `scipy.stats` functions and were introduced additionally. They allow users to discard all values generated outside of the defined range.
 
-2. *Resource Calendars* lists the time intervals in which a resource is available to perform a task on a weekly calendar basis.
+2. [*Resource Calendars*](#resource-calendars) <a name="resource-calendars"></a> lists the time intervals in which a resource is available to perform a task on a weekly calendar basis.
 
     This section defines calendars which then (in the next section) could be re-used. Defining a calendar here and not assigning it to the resource will not impact the simulation.
 
@@ -91,7 +91,7 @@ Detailed description of every section of the simulation parameters:
 
     > Switching between different calendars might take some time in case of numerous time periods assigned to the calendar. For example, the calendar with 30 time periods might take 30-60 sec to render. 
 
-3. *Resources* describes the resources grouped into pools. Specifically, it includes a set of resource pools.
+3. [*Resources*](#resources) <a name="resources"></a> describes the resources grouped into pools. Specifically, it includes a set of resource pools.
 
     Description of the available functionality could be found here:
 
@@ -99,14 +99,14 @@ Detailed description of every section of the simulation parameters:
 
     Adding a new Resource Profile under the Resource Pool and not allocating the Resource Profile to the task in the next section will not impact the simulation. In order for the changes to be considered, the Resource Profile needs to be allocated to the task.
 
-4. *Resource Allocation* maps each task in the process model and the list of resources that can perform it.
+4. [*Resource Allocation*](#resource-alloc) <a name="resource-alloc"></a> maps each task in the process model and the list of resources that can perform it.
     
     Description of the available functionality could be found here:
 
     ![Resource Allocation explanations](docs/images/resource_allocation.png)
     
 
-5. *Branching Probabilities* represents the probability for the process execution to move towards any outgoing flow of each split (inclusive or exclusive) gateway in the process model.
+5. [*Branching Probabilities*](#branching) <a name="branching"></a> represents the probability for the process execution to move towards any outgoing flow of each split (inclusive or exclusive) gateway in the process model.
 
     The UI shows all gateways in the model and their outgoing flows. The sum of provided flows should be equal to 1 for every gateway.
 
